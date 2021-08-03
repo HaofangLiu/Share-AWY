@@ -1,22 +1,18 @@
 import { makeObservable, observable, action } from "mobx";
+import Auth from "../models";
 
 class AuthStore {
-  isLogin = false;
-  isLoading = true;
   values = {
     username: "asdf",
     password: "",
+    email: "",
   };
 
   constructor() {
     makeObservable(this, {
-      isLogin: observable,
-      isLoading: observable,
       values: observable,
       setUserName: action,
       setPassword: action,
-      setIsLogin: action,
-      setIsLoginsetIsLogin: action,
       login: action,
       register: action,
       logout: action,
@@ -31,19 +27,52 @@ class AuthStore {
     this.values.password = psd;
   }
 
-  setIsLogin(loginStatus) {
-    this.isLogin = loginStatus;
+  setEmail(eml) {
+    this.values.email = eml;
   }
 
-  setIsLoginsetIsLogin(loadingStatus) {
-    this.isLoading = loadingStatus;
+  login() {
+    return new Promise((resolve, reject) => {
+      Auth.login(this.values.username, this.values.password)
+        .then((user) => {
+          console.log("login success");
+          resolve(user);
+        })
+        .catch((e) => {
+          reject(e);
+        });
+    });
   }
 
-  login() {}
+  register() {
+    return new Promise((resolve, reject) => {
+      Auth.register(
+        this.values.username,
+        this.values.password,
+        this.values.email
+      )
+        .then((user) => {
+          console.log("register success");
+          resolve(user);
+        })
+        .catch((e) => {
+          reject(e);
+        });
+    });
+  }
 
-  register() {}
-
-  logout() {}
+  logout() {
+    return new Promise((resolve, reject) => {
+      Auth.logout()
+        .then(() => {
+          console.log("logout success");
+          resolve();
+        })
+        .catch((e) => {
+          reject(e);
+        });
+    });
+  }
 }
 
 export default AuthStore;

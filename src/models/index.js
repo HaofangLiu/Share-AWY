@@ -1,16 +1,17 @@
-import AV, { Query, User } from "leancloud-storage";
+import AV, { User } from "leancloud-storage";
 
 AV.init({
-  appId: "BPciOgpkG9r5XVoHijuaBo22-9Nh9j0Va",
-  appKey: "3xri4nKOQqWFytYqzhHEfffu",
-  serverURL: "https://please-replace-with-your-customized.domain.com",
+  appId: "dcVwYNYN5tuj9JkOX87Mk5JY-gzGzoHsz",
+  appKey: "cgWXFJb5yyV5F9pVIekL2TMV",
+  serverURL: "https://dcvwynyn.lc-cn-n1-shared.com",
 });
 
 const Auth = {
-  register(username, password) {
+  register(username, password, email) {
     let user = new User();
     user.setUsername(username);
     user.setPassword(password);
+    user.setEmail(email);
     return new Promise((resolve, reject) => {
       user.signUp().then(
         (newUser) => resolve(newUser),
@@ -28,7 +29,13 @@ const Auth = {
     });
   },
 
-  logout(){
-      User.logOut();
-  }
+  logout() {
+    User.logOut();
+  },
+
+  getCurrentUser() {
+    return User.current();
+  },
 };
+
+export default Auth;

@@ -4,6 +4,7 @@ import logo from "../logo.svg";
 import styled from "styled-components";
 import { Button } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import useStore from "../stores";
 
 const StyledHeader = styled.header`
   padding: 0px 10px;
@@ -41,7 +42,7 @@ const LinkStyled = styled(NavLink)`
 `;
 
 const Header = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const { UserStore } = useStore();
 
   return (
     <StyledHeader>
@@ -62,11 +63,12 @@ const Header = () => {
       </LinkStyled>
 
       <StyledRight>
-        {isLogin ? (
+        {
+          console.log(UserStore)
+        }
+        {UserStore.loggedinUser ? (
           <>
-            <LinkStyled activeClassName="active">
-              Logout
-            </LinkStyled>
+            <LinkStyled activeClassName="active">Logout</LinkStyled>
             <Button type="primary" icon={<UserOutlined />}>
               My Account
             </Button>
@@ -76,7 +78,9 @@ const Header = () => {
             <LinkStyled to="/login" activeClassName="active">
               Login
             </LinkStyled>
-            <Button type="primary" href="/register">Create Account</Button>
+            <Button type="primary" href="/register">
+              Create Account
+            </Button>
           </>
         )}
       </StyledRight>

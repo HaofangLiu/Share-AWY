@@ -1,14 +1,25 @@
-import React, { useRef } from "react";
+import React from "react";
 import { observer } from "mobx-react";
 import useStore from "../stores/index";
 import { Form, Input, Button, Checkbox, Divider, Row, Col } from "antd";
 
 const Reigster = observer(() => {
-  const { AuthStore } = useStore();
-  const inputRef = useRef();
+  const { AuthStore, UserStore } = useStore();
+  // const inputRef = useRef();
 
   const onFinish = (values) => {
-    console.log("Success:", values);
+    AuthStore.setEmail(values.email);
+    AuthStore.setUserName(values.username);
+    AuthStore.setPassword(values.password);
+    AuthStore.register()
+      .then(() => {
+        UserStore.setUser();
+        AuthStore.login();
+      })
+      .catch((e) => {
+        console.log(e);
+        UserStore.resetUser();
+      });
   };
 
   const onFinishFailed = (errorInfo) => {

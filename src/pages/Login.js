@@ -1,14 +1,24 @@
-import React, { useRef } from "react";
+import React from "react";
 import { observer } from "mobx-react";
-import useStore from "../stores/index";
+// import useStore from "../stores/index";
 import { Form, Input, Button, Checkbox, Divider, Row, Col } from "antd";
+import useStore from "../stores";
 
 const Login = observer(() => {
-  const { AuthStore } = useStore();
-  const inputRef = useRef();
+  const { AuthStore, UserStore } = useStore();
+  // const inputRef = useRef();
 
   const onFinish = (values) => {
-    console.log("Success:", values);
+    AuthStore.setUserName(values.username);
+    AuthStore.setPassword(values.password);
+    AuthStore.login()
+      .then(() => {
+        UserStore.setUser();
+      })
+      .catch((e) => {
+        console.log(e);
+        UserStore.resetUser();
+      });
   };
 
   const onFinishFailed = (errorInfo) => {
