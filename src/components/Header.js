@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../logo.svg";
 import styled from "styled-components";
 import { Button } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import useStore from "../stores";
+import { observer } from "mobx-react";
 
 const StyledHeader = styled.header`
   padding: 0px 10px;
@@ -41,8 +42,19 @@ const LinkStyled = styled(NavLink)`
   }
 `;
 
-const Header = () => {
+const StyledButton = styled.button`
+  padding: 10px 15px;
+  border: none;
+  color: #333;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+const Header = observer(() => {
   const { UserStore } = useStore();
+
+  const handleLogout = () => {};
 
   return (
     <StyledHeader>
@@ -63,14 +75,11 @@ const Header = () => {
       </LinkStyled>
 
       <StyledRight>
-        {
-          console.log(UserStore)
-        }
         {UserStore.loggedinUser ? (
           <>
-            <LinkStyled activeClassName="active">Logout</LinkStyled>
+            <StyledButton onClick={handleLogout}>Logout</StyledButton>
             <Button type="primary" icon={<UserOutlined />}>
-              My Account
+              {UserStore.loggedinUser.attributes.username}
             </Button>
           </>
         ) : (
@@ -86,6 +95,6 @@ const Header = () => {
       </StyledRight>
     </StyledHeader>
   );
-};
+});
 
 export default Header;
