@@ -6,7 +6,7 @@ AV.init({
   serverURL: "https://dcvwynyn.lc-cn-n1-shared.com",
 });
 
-const Auth = {
+export const Auth = {
   register(username, password, email) {
     let user = new User();
     user.setUsername(username);
@@ -38,4 +38,22 @@ const Auth = {
   },
 };
 
-export default Auth;
+export const Upload = {
+  uploadFile(file, fileName) {
+    const item = new AV.Object("Image");
+    const fileAv = new AV.File(fileName, file);
+    item.set("filename", fileName);
+    item.set("owner", AV.User.current());
+    item.set("url", fileAv);
+    return new Promise((resolve, reject) => {
+      item.save().then(
+        (serverFile) => {
+          resolve(serverFile);
+        },
+        (e) => {
+          reject(e);
+        }
+      );
+    });
+  },
+};
