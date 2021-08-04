@@ -2,9 +2,12 @@ import React from "react";
 import { observer } from "mobx-react";
 import useStore from "../stores/index";
 import { Form, Input, Button, Checkbox, Divider, Row, Col } from "antd";
+import { useHistory } from "react-router";
 
 const Reigster = observer(() => {
   const { AuthStore, UserStore } = useStore();
+  const history = useHistory();
+
   // const inputRef = useRef();
 
   const onFinish = (values) => {
@@ -15,6 +18,9 @@ const Reigster = observer(() => {
       .then(() => {
         UserStore.setUser();
         AuthStore.login();
+      })
+      .then(() => {
+        history.push("/");
       })
       .catch((e) => {
         console.log(e);

@@ -52,9 +52,12 @@ const StyledButton = styled.button`
 `;
 
 const Header = observer(() => {
-  const { UserStore } = useStore();
+  const { UserStore, AuthStore } = useStore();
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    AuthStore.logout();
+    UserStore.resetUser();
+  };
 
   return (
     <StyledHeader>

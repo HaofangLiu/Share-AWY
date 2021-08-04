@@ -3,9 +3,11 @@ import { observer } from "mobx-react";
 // import useStore from "../stores/index";
 import { Form, Input, Button, Checkbox, Divider, Row, Col } from "antd";
 import useStore from "../stores";
+import { useHistory } from "react-router";
 
 const Login = observer(() => {
   const { AuthStore, UserStore } = useStore();
+  const history = useHistory();
   // const inputRef = useRef();
 
   const onFinish = (values) => {
@@ -14,6 +16,7 @@ const Login = observer(() => {
     AuthStore.login()
       .then(() => {
         UserStore.setUser();
+        history.push("/");
       })
       .catch((e) => {
         console.log(e);

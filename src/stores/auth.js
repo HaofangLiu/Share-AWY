@@ -62,16 +62,7 @@ class AuthStore {
   }
 
   logout() {
-    return new Promise((resolve, reject) => {
-      Auth.logout()
-        .then(() => {
-          console.log("logout success");
-          resolve();
-        })
-        .catch((e) => {
-          reject(e);
-        });
-    });
+    Auth.logout();
   }
 }
 
