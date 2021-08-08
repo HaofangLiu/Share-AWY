@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from "mobx";
+import { makeObservable, observable, action, runInAction } from "mobx";
 import { Upload } from "../models";
 
 class ImageStore {
@@ -15,6 +15,7 @@ class ImageStore {
       serverFile: observable,
       setFileName: action,
       setFile: action,
+      uploadFile: action,
     });
   }
 
@@ -31,7 +32,9 @@ class ImageStore {
     return new Promise((resolve, reject) => {
       Upload.uploadFile(this.file, this.fileName)
         .then((uploadedFile) => {
-          this.serverFile = uploadedFile;
+          runInAction(() => {
+            this.serverFile = uploadedFile;
+          });
           resolve(uploadedFile);
         })
         .catch((e) => {
