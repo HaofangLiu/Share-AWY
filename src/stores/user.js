@@ -14,7 +14,6 @@ class UserStore {
 
   setUser() {
     this.loggedinUser = Auth.getCurrentUser();
-    console.log(this.loggedinUser);
   }
 
   resetUser() {

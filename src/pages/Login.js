@@ -1,7 +1,16 @@
 import React from "react";
 import { observer } from "mobx-react";
 // import useStore from "../stores/index";
-import { Form, Input, Button, Checkbox, Divider, Row, Col } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Checkbox,
+  Divider,
+  Row,
+  Col,
+  message,
+} from "antd";
 import useStore from "../stores";
 import { useHistory } from "react-router";
 
@@ -19,13 +28,15 @@ const Login = observer(() => {
         history.push("/");
       })
       .catch((e) => {
-        console.log(e);
+        // console.log(e);
+        message.error("login failed");
         UserStore.resetUser();
       });
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    // console.log("Failed:", errorInfo);
+    message.error("login failed");
   };
 
   return (

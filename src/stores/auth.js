@@ -1,5 +1,5 @@
 import { makeObservable, observable, action } from "mobx";
-import {Auth} from "../models";
+import { Auth } from "../models";
 
 class AuthStore {
   values = {
@@ -35,7 +35,7 @@ class AuthStore {
     return new Promise((resolve, reject) => {
       Auth.login(this.values.username, this.values.password)
         .then((user) => {
-          console.log("login success");
+          // console.log("login success");
           resolve(user);
         })
         .catch((e) => {
@@ -52,7 +52,7 @@ class AuthStore {
         this.values.email
       )
         .then((user) => {
-          console.log("register success");
+          // console.log("register success");
           resolve(user);
         })
         .catch((e) => {

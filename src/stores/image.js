@@ -29,6 +29,7 @@ class ImageStore {
 
   uploadFile() {
     this.isUploading = true;
+    this.serverFile = null;
     return new Promise((resolve, reject) => {
       Upload.uploadFile(this.file, this.fileName)
         .then((uploadedFile) => {

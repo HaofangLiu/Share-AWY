@@ -1,7 +1,16 @@
 import React from "react";
 import { observer } from "mobx-react";
 import useStore from "../stores/index";
-import { Form, Input, Button, Checkbox, Divider, Row, Col } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Checkbox,
+  Divider,
+  Row,
+  Col,
+  message,
+} from "antd";
 import { useHistory } from "react-router";
 
 const Reigster = observer(() => {
@@ -23,13 +32,13 @@ const Reigster = observer(() => {
         history.push("/");
       })
       .catch((e) => {
-        console.log(e);
+        message.error("register failed");
         UserStore.resetUser();
       });
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    message.error("register failed");
   };
 
   const validateUserName = (rule, value) => {
