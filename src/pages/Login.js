@@ -35,7 +35,6 @@ const Login = observer(() => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    // console.log("Failed:", errorInfo);
     message.error("login failed");
   };
 
