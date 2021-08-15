@@ -52,11 +52,12 @@ const StyledButton = styled.button`
 `;
 
 const Header = observer(() => {
-  const { UserStore, AuthStore } = useStore();
+  const { UserStore, AuthStore,HistoryStore } = useStore();
 
   const handleLogout = () => {
     AuthStore.logout();
     UserStore.resetUser();
+    HistoryStore.reset();
   };
 
   return (

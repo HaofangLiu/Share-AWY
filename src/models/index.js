@@ -2,7 +2,7 @@ import AV, { User } from "leancloud-storage";
 
 AV.init({
   appId: "hcF8bWQ68nG85EYEXBV5zKnD-MdYXbMMI",
-  appKey: "zRzygxnrKphnXSIM4Tweq0AN"
+  appKey: "zRzygxnrKphnXSIM4Tweq0AN",
 });
 
 export const Auth = {
@@ -55,4 +55,26 @@ export const Upload = {
       );
     });
   },
+
+  find({ page = 0, limit = 10 }) {
+    // show all user upload files
+    const query = new AV.Query("Image");
+    query.include("owner");
+    query.limit(limit);
+    query.skip(page * limit);
+    query.equalTo("owner", AV.User.current());
+    query.descending("createdAt");
+    return new Promise((resolve, reject) => {
+      query
+        .find()
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
 };
+
+window.Upload = Upload;

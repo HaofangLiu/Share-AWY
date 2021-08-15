@@ -39,7 +39,6 @@ const UploaderComponent = observer(() => {
       ImageStore.uploadFile()
         .then((serverFile) => {
           message.success('upload success')
-          console.log(serverFile);
         })
         .catch((e) => {
           message.error('upload failed')

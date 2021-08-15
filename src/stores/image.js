@@ -42,7 +42,9 @@ class ImageStore {
           reject(e);
         })
         .finally(() => {
-          this.isUploading = false;
+          runInAction(() => {
+            this.isUploading = false;
+          });
         });
     });
   }
