@@ -1,7 +1,11 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 
 body {
   margin: 0;
+  background-image: url(./res/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: custom-ff;
 }
 
 a {
@@ -18,4 +22,9 @@ a {
 main {
   flex: 1;
   margin: 0 30px;
+}
+
+@font-face {
+  font-family: custom-ff;
+  src: url(./res/fz.ttf) format("truetype");
 }

@@ -9,12 +9,11 @@ const Home = observer(() => {
 
   return (
     <>
-      <h1>Home Page</h1>
-      {UserStore.loggedinUser ? null : <Tips>You have to login to upload</Tips>}
+      {/* {UserStore.loggedinUser ? null : <Tips>You have to login to upload</Tips>}
       {UserStore.loggedinUser ? (
         <p>Hello, {UserStore.loggedinUser.attributes.username}</p>
       ) : null}
-      <UploaderComponent />
+      <UploaderComponent /> */}
     </>
   );
 });

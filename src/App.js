@@ -1,9 +1,8 @@
 import React, { Suspense, lazy } from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Loading from "./loading";
+import LogoComponent from "./components/LogoComp";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -14,8 +13,8 @@ const Register = lazy(() => import("./pages/Register"));
 function App() {
   return (
     <div className="app">
-      <Header />
       <main>
+      <LogoComponent />
         <Suspense fallback={<Loading />}>
           <Switch>
             <Route path="/" exact component={Home} />
@@ -26,7 +25,6 @@ function App() {
           </Switch>
         </Suspense>
       </main>
-      <Footer />
     </div>
   );
 }
