@@ -28,3 +28,20 @@ main {
   font-family: custom-ff;
   src: url(./res/fz.ttf) format("truetype");
 }
+
+.router-area {
+  width: 0;
+  max-width: 0;
+  height: 100vh;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 100px;
+  transition: all 0.5s;
+}
+
+.router-area.login {
+  width: 100%;
+  max-width: calc(100% - 250px);
+}

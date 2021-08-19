@@ -2,14 +2,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import share from "../res/share.svg";
 import styled from "styled-components";
-import { Button } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import useStore from "../stores";
 import { observer } from "mobx-react";
 
 const StyledLogoArea = styled.div`
   position: absolute;
-  top: 10px;
+  top: 24px;
+  z-index:100;
 `;
 
 const LogoUrl = styled.img`
@@ -43,6 +41,7 @@ const StyledDropDownContent = styled.div`
   border: 1px solid #121212;
   border-radius: 4px;
   position: absolute;
+  top: calc(100% + 5px);
   padding: 8px 0;
   left: 50%;
   transform: translate(-50%);
@@ -75,23 +74,15 @@ const StyledFamily = styled.span`
 `;
 
 const LogoComponent = observer(() => {
-  const { UserStore, AuthStore, HistoryStore } = useStore();
-
-  const handleLogout = () => {
-    AuthStore.logout();
-    UserStore.resetUser();
-    HistoryStore.reset();
-  };
-
-  const handleSelect = () => {};
+  
 
   return (
     <StyledLogoArea>
       <LinkStyled to="/" exact>
         <LogoUrl src={share} alt="logo"></LogoUrl>
-        <StyledFamily>share as you wish</StyledFamily>
+        <StyledFamily>share AWY</StyledFamily>
       </LinkStyled>
-      <StyledDropDownContent class="dropdown-content">
+      <StyledDropDownContent className="dropdown-content">
         <StyledDropItem to="/history" activeClassName="active">
           History
         </StyledDropItem>

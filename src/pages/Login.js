@@ -40,13 +40,13 @@ const Login = observer(() => {
 
   return (
     <>
-      <Divider orientation="left">Login</Divider>
-      <Row gutter={24}>
-        <Col xs={24} sm={24} md={10}>
+      <Divider orientation="center">Login</Divider>
+      <Row gutter={16}>
+        <Col xs={24} sm={24} md={12}>
           <Form
             name="basic"
             labelAlign="right"
-            labelCol={{ span: 5 }}
+            labelCol={{ span: 8 }}
             initialValues={{
               remember: true,
             }}
@@ -92,7 +92,7 @@ const Login = observer(() => {
               valuePropName="checked"
               wrapperCol={{
                 span: 24,
-                offset: 4,
+                offset: 8,
               }}
             >
               <Checkbox>Remember Me</Checkbox>
@@ -101,7 +101,7 @@ const Login = observer(() => {
             <Form.Item
               wrapperCol={{
                 span: 24,
-                offset: 8,
+                offset: 12,
               }}
             >
               <Button type="primary" htmlType="submit">
@@ -110,10 +110,10 @@ const Login = observer(() => {
             </Form.Item>
           </Form>
         </Col>
-        <Col xs={24} sm={24} md={2}>
+        <Col xs={24} sm={24} md={4}>
           <Divider>OR</Divider>
         </Col>
-        <Col xs={24} sm={24} md={10}>
+        <Col xs={24} sm={24} md={8}>
           <p>Sign in with other account</p>
         </Col>
       </Row>
