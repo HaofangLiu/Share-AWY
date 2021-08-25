@@ -4,7 +4,7 @@ import styled from "styled-components";
 const StyledDiv = styled.div`
   background: orange;
   padding: 10px;
-  margin: 30px 0;
+  margin: 100px 30px 20px;
   color: #fff;
   border-radius: 4px;
 `;

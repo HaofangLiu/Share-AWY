@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
 // import useStore from "../stores/index";
 import {
@@ -6,10 +6,10 @@ import {
   Input,
   Button,
   Checkbox,
-  Divider,
   Row,
   Col,
   message,
+  Drawer,
 } from "antd";
 import useStore from "../stores";
 import { useHistory } from "react-router";
@@ -17,7 +17,15 @@ import { useHistory } from "react-router";
 const Login = observer(() => {
   const { AuthStore, UserStore } = useStore();
   const history = useHistory();
-  // const inputRef = useRef();
+  const [visible, setVisible] = useState(true);
+
+  // const showDrawer = () => {
+  //   setVisible(true);
+  // };
+
+  const onClose = () => {
+    setVisible(false);
+  };
 
   const onFinish = (values) => {
     AuthStore.setUserName(values.username);
@@ -25,7 +33,7 @@ const Login = observer(() => {
     AuthStore.login()
       .then(() => {
         UserStore.setUser();
-        history.push("/");
+        onClose();
       })
       .catch((e) => {
         // console.log(e);
@@ -38,15 +46,29 @@ const Login = observer(() => {
     message.error("login failed");
   };
 
+  const onCloseGoBack = () => {
+    if (!visible) {
+      history.goBack();
+    }
+  };
+
   return (
-    <>
-      <Divider orientation="center">Login</Divider>
-      <Row gutter={16}>
-        <Col xs={24} sm={24} md={12}>
+    <Drawer
+      title="Login"
+      placement="right"
+      closable={false}
+      onClose={onClose}
+      visible={visible}
+      width="calc(100% - 250px)"
+      getContainer={false}
+      afterVisibleChange={onCloseGoBack}
+    >
+      <Row>
+        <Col xs={24}>
           <Form
             name="basic"
             labelAlign="right"
-            labelCol={{ span: 8 }}
+            labelCol={{ span: 3 }}
             initialValues={{
               remember: true,
             }}
@@ -92,7 +114,7 @@ const Login = observer(() => {
               valuePropName="checked"
               wrapperCol={{
                 span: 24,
-                offset: 8,
+                offset: 11,
               }}
             >
               <Checkbox>Remember Me</Checkbox>
@@ -110,14 +132,8 @@ const Login = observer(() => {
             </Form.Item>
           </Form>
         </Col>
-        <Col xs={24} sm={24} md={4}>
-          <Divider>OR</Divider>
-        </Col>
-        <Col xs={24} sm={24} md={8}>
-          <p>Sign in with other account</p>
-        </Col>
       </Row>
-    </>
+    </Drawer>
   );
 });
 

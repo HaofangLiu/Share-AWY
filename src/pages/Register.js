@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
 import useStore from "../stores/index";
 import {
@@ -6,18 +6,21 @@ import {
   Input,
   Button,
   Checkbox,
-  Divider,
   Row,
   Col,
   message,
+  Drawer,
 } from "antd";
 import { useHistory } from "react-router";
 
 const Reigster = observer(() => {
   const { AuthStore, UserStore } = useStore();
   const history = useHistory();
+  const [visible, setVisible] = useState(true);
 
-  // const inputRef = useRef();
+  const onClose = () => {
+    setVisible(false);
+  };
 
   const onFinish = (values) => {
     AuthStore.setEmail(values.email);
@@ -37,9 +40,9 @@ const Reigster = observer(() => {
       });
   };
 
-  const onFinishFailed = (errorInfo) => {
-    message.error("register failed");
-  };
+  // const onFinishFailed = (errorInfo) => {
+  //   message.error("register failed");
+  // };
 
   const validateUserName = (rule, value) => {
     if (/\W/g.test(value))
@@ -49,20 +52,33 @@ const Reigster = observer(() => {
     return Promise.resolve();
   };
 
+  const onCloseGoBack = () => {
+    if (!visible) {
+      history.goBack();
+    }
+  };
+
   return (
-    <>
-      <Divider orientation="left">Register</Divider>
-      <Row gutter={24}>
-        <Col xs={24} sm={24} md={10}>
+    <Drawer
+      title="Register"
+      placement="right"
+      closable={false}
+      onClose={onClose}
+      visible={visible}
+      width="calc(100% - 250px)"
+      getContainer={false}
+      afterVisibleChange={onCloseGoBack}
+    >
+      <Row>
+        <Col xs={24}>
           <Form
             name="basic"
             labelAlign="right"
-            labelCol={{ span: 5 }}
+            labelCol={{ span: 3 }}
             initialValues={{
               remember: true,
             }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
           >
             <Form.Item
               label="Email"
@@ -120,7 +136,7 @@ const Reigster = observer(() => {
               valuePropName="checked"
               wrapperCol={{
                 span: 24,
-                offset: 4,
+                offset: 7,
               }}
             >
               <Checkbox>I agree to the terms and privacy policy</Checkbox>
@@ -129,7 +145,7 @@ const Reigster = observer(() => {
             <Form.Item
               wrapperCol={{
                 span: 24,
-                offset: 8,
+                offset: 11,
               }}
             >
               <Button type="primary" htmlType="submit">
@@ -138,14 +154,8 @@ const Reigster = observer(() => {
             </Form.Item>
           </Form>
         </Col>
-        <Col xs={24} sm={24} md={2}>
-          <Divider>OR</Divider>
-        </Col>
-        <Col xs={24} sm={24} md={10}>
-          <p>Sign in with other account</p>
-        </Col>
       </Row>
-    </>
+    </Drawer>
   );
 });
 

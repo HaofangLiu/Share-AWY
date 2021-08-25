@@ -4,17 +4,19 @@ import useStore from "../stores";
 import { NavLink } from "react-router-dom";
 import { Button } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import { observer } from "mobx-react-lite";
 
 const StyledLoginSection = styled.div`
   position: absolute;
   right: 30px;
   top: 24px;
-  z-index:100;
+  z-index: 100;
   box-shadow: 0 0 8px 0 rgb(0 0 0 / 13%);
   background: #fff;
-  border-radius: .3125rem;
+  border-radius: 0.3125rem;
+  height: 40px;
+  display: flex;
 `;
-
 const StyledButton = styled.button`
   padding: 10px 15px;
   border: none;
@@ -32,35 +34,38 @@ const LinkStyled = styled(NavLink)`
   }
 `;
 
-const LoginComp = () => {
-  const { UserStore, AuthStore, HistoryStore } = useStore();
+const StyledButtonUi = styled(Button)`
+  height: 100%;
+`;
+
+const LoginComp = observer(() => {
+  const { UserStore, AuthStore, HistoryStore, ImageStore } = useStore();
 
   const handleLogout = () => {
     AuthStore.logout();
     UserStore.resetUser();
     HistoryStore.reset();
+    ImageStore.clearServerFile();
   };
   return (
     <>
       {UserStore.loggedinUser ? (
         <StyledLoginSection>
           <StyledButton onClick={handleLogout}>Logout</StyledButton>
-          <Button type="primary" icon={<UserOutlined />}>
+          <StyledButtonUi block={true} type="primary" icon={<UserOutlined />}>
             {UserStore.loggedinUser.attributes.username}
-          </Button>
+          </StyledButtonUi>
         </StyledLoginSection>
       ) : (
         <StyledLoginSection>
           <LinkStyled to="/login" activeClassName="active">
             Login
           </LinkStyled>
-          <Button type="primary" href="/register">
-            Create Account
-          </Button>
+          <LinkStyled to="/register">Create Account</LinkStyled>
         </StyledLoginSection>
       )}
     </>
   );
-};
+});
 
 export default LoginComp;

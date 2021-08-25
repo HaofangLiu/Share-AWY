@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
+import { Spin } from "antd";
 
 const Loading = () => {
-    return (
-        <div>loading...</div>
-    )
-}
+  return <Spin />;
+};
 
 export default Loading;

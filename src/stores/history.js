@@ -34,7 +34,6 @@ class HistoryStore {
 
   findList() {
     this.isLoading = true;
-    console.log(this.currentPage);
     Upload.find({ page: this.currentPage, limit: this.limit })
       .then((res) => {
         runInAction(() => {

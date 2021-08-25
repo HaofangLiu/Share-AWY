@@ -1,9 +1,10 @@
 import React from "react";
 import useStore from "../stores";
 import { observer } from "mobx-react";
-import { Upload, message, Spin } from "antd";
+import { Upload, message, Spin, Button } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import styled from "styled-components";
+import { getPreviewImage, copyToClip } from "../util/common-utils";
 
 const StyledResult = styled.div`
   margin-top: 30px;
@@ -18,6 +19,10 @@ const StyledTitle = styled.h1`
 
 const StyledImage = styled.img`
   max-width: 300px;
+`;
+
+const StyledUploaderContainer = styled.div`
+  margin: 5px 30px;
 `;
 
 const UploaderComponent = observer(() => {
@@ -38,18 +43,19 @@ const UploaderComponent = observer(() => {
       }
       ImageStore.uploadFile()
         .then((serverFile) => {
-          message.success('upload success')
+          message.success("upload success");
         })
         .catch((e) => {
-          message.error('upload failed')
+          message.error("upload failed");
         });
-      return false;
+      // return false;
     },
+    showUploadList: false,
   };
 
   return (
     <Spin spinning={ImageStore.isUploading}>
-      <div>
+      <StyledUploaderContainer>
         <Dragger {...beforeUploadProps}>
           <p className="ant-upload-drag-icon">
             <InboxOutlined />
@@ -58,8 +64,8 @@ const UploaderComponent = observer(() => {
             Click or drag file to this area to upload
           </p>
           <p className="ant-upload-hint">
-            Support for a single or bulk upload. Strictly prohibit from
-            uploading company data or other band files
+            Support for a single upload. Strictly prohibit from uploading
+            company data or other band files
           </p>
         </Dragger>
         <div>
@@ -74,8 +80,20 @@ const UploaderComponent = observer(() => {
                     target="_blank"
                     href={ImageStore.serverFile.attributes.url.attributes.url}
                   >
-                    Click to download
+                    Click to open
                   </a>
+                  <span> |</span>
+                  <Button
+                    type="link"
+                    style={{ color: "black" }}
+                    onClick={() => {
+                      copyToClip(
+                        ImageStore.serverFile.attributes.url.attributes.url
+                      );
+                    }}
+                  >
+                    Click to copy
+                  </Button>
                 </dd>
                 <dt>FileName</dt>
                 <dd>{ImageStore.fileName}</dd>
@@ -83,19 +101,14 @@ const UploaderComponent = observer(() => {
                 <dd>
                   <StyledImage
                     alt="preview"
-                    src={ImageStore.serverFile.attributes.url.attributes.url}
+                    src={getPreviewImage(ImageStore.serverFile.attributes.url)}
                   />
                 </dd>
-                <dd>More File</dd>
-                <dt>
-                  <input placeholder="最大宽度" />
-                  <input placeholder="最大高度" />
-                </dt>
               </dl>
             </StyledResult>
           ) : null}
         </div>
-      </div>
+      </StyledUploaderContainer>
     </Spin>
   );
 });

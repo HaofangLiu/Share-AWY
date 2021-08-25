@@ -7,7 +7,7 @@ import { observer } from "mobx-react";
 const StyledLogoArea = styled.div`
   position: absolute;
   top: 24px;
-  z-index:100;
+  z-index: 100;
 `;
 
 const LogoUrl = styled.img`
@@ -74,8 +74,6 @@ const StyledFamily = styled.span`
 `;
 
 const LogoComponent = observer(() => {
-  
-
   return (
     <StyledLogoArea>
       <LinkStyled to="/" exact>

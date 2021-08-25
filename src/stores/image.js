@@ -16,6 +16,7 @@ class ImageStore {
       setFileName: action,
       setFile: action,
       uploadFile: action,
+      clearServerFile: action,
     });
   }
 
@@ -47,6 +48,10 @@ class ImageStore {
           });
         });
     });
+  }
+
+  clearServerFile() {
+    this.serverFile = null;
   }
 }
 
