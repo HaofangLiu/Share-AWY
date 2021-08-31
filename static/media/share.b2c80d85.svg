@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160px" height="166px" viewBox="0 0 160 166" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>分享</title>
+    <defs>
+        <linearGradient x1="100%" y1="8.87675006%" x2="32.6773932%" y2="65.663109%" id="linearGradient-1">
+            <stop stop-color="#81E6FF" offset="0%"></stop>
+            <stop stop-color="#409EFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="15.642313%" x2="20.2463681%" y2="92.5421113%" id="linearGradient-2">
+            <stop stop-color="#979797" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.380945592" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#FFFFFF" stop-opacity="0.277788496" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.6" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="37.7717202%" x2="29.5285929%" y2="75.3846739%" id="linearGradient-4">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.721960535" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="毛玻璃质感图标" transform="translate(-678.000000, -77.000000)">
+            <g id="分享" transform="translate(678.000000, 77.000000)">
+                <rect id="背景" fill="#304B68" x="0" y="0" width="160" height="166" rx="40"></rect>
+                <g id="icon_标绘分享_常态" transform="translate(20.000000, 23.000000)">
+                    <rect id="选中背景" x="0" y="0" width="120" height="120" rx="60"></rect>
+                    <path d="M88,34.5 C90.0710678,34.5 91.9460678,35.3394661 93.3033009,36.6966991 C94.6605339,38.0539322 95.5,39.9289322 95.5,42 L95.5,42 L95.5,89 C95.5,91.0710678 94.6605339,92.9460678 93.3033009,94.3033009 C91.9460678,95.6605339 90.0710678,96.5 88,96.5 L88,96.5 L28,96.5 C25.9289322,96.5 24.0539322,95.6605339 22.6966991,94.3033009 C21.3394661,92.9460678 20.5,91.0710678 20.5,89 L20.5,89 L20.5,51 C20.5,46.4436508 22.3468254,42.3186508 25.3327381,39.3327381 C28.3186508,36.3468254 32.4436508,34.5 37,34.5 L37,34.5 Z" id="矩形" stroke="url(#linearGradient-2)" fill="url(#linearGradient-1)"></path>
+                    <path d="M52.7923346,67.8795326 C52.6602788,67.8795326 52.5282231,67.8795326 52.3961674,67.8357256 C50.8995358,67.6166911 49.84309,66.258677 50.0191643,64.7692421 C51.3837401,52.0214321 55.9176534,42.602947 63.4448299,36.7328214 C68.8591147,32.4835514 75.7260125,30.1179784 83.8254305,29.6799093 L85.4981363,29.5922955 L85.4981363,20.5242657 C85.4981363,16.9320992 88.7995295,16.1435749 90.5602725,17.8958512 L111.116947,38.7041322 C113.714043,41.3325467 113.581988,44.0485749 110.984892,46.6769894 L90.9564397,66.9595875 C88.8435481,69.0623191 85.4981363,67.7919187 85.4981363,64.813049 L85.4981363,55.0879156 L83.4292633,55.0879156 C75.9020868,55.0879156 62.2123098,56.5773504 55.0372819,66.6091322 C54.5970962,67.4414635 53.7167246,67.8795326 52.7923346,67.8795326 Z" id="路径" stroke="url(#linearGradient-4)" fill="url(#linearGradient-3)" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
